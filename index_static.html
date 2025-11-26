@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>급식 정보</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>급식 정보</h1>
+      <div style="display:flex;gap:8px">
+        <button id="devModeBtn" class="secondary" style="padding:0.5rem 1rem;font-size:0.875rem">개발자 모드</button>
+      </div>
+    </header>
+
+    <!-- 일반 모드: 학교 검색 -->
+    <div id="normalMode">
+      <div style="margin-bottom:1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <div class="search-container" style="width: 100%;">
+          <input id="schoolSearch" type="text" placeholder="학교 이름을 검색하세요 (예: 부원중학교)"
+            style="width: 100%; max-width: 400px;" />
+          <div id="searchResults" class="search-results"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 0.875rem; color: var(--text-secondary);">선택된 학교:</span>
+          <span id="selectedSchool">선택 안 됨</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <label for="date">날짜</label>
+          <input id="date" type="text" placeholder="YYYYMMDD" style="width:140px; text-align:center;" />
+        </div>
+        <button id="loadBtn" class="secondary">캐시 불러오기</button>
+        <button id="fetchApiBtn">NEIS 불러오기</button>
+      </div>
+    </div>
+
+    <!-- 개발자 모드: 교육청/학교 코드 직접 입력 -->
+    <div id="devMode" class="dev-mode">
+      <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem; color:#be123c;">개발자 설정</h3>
+      <div class="controls">
+        <label>교육청 <input id="office" type="text" value="E10" style="width:60px; text-align:center;" /></label>
+        <label>학교 <input id="school" type="text" value="7331058" style="width:100px; text-align:center;" /></label>
+        <label>날짜 <input id="dateDevMode" type="text" placeholder="YYYYMMDD"
+            style="width:120px; text-align:center;" /></label>
+        <button id="loadBtnDev" class="secondary">캐시 로드</button>
+        <button id="fetchApiBtnDev">NEIS 로드</button>
+      </div>
+
+      <div
+        style="margin-top:1rem; padding-top:1rem; border-top:1px solid #fda4af; display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <input id="fileInput" type="file" accept="application/json" style="padding:0.4rem;" />
+        </div>
+        <button id="pasteBtn" class="secondary" style="font-size:0.85rem;">API 응답 붙여넣기</button>
+      </div>
+    </div>
+
+    <div class="panel" id="meal-boxes">
+      <div class="meal-box">
+        <div class="meal-title">조식</div>
+        <div class="food" id="breakfast">정보 없음</div>
+      </div>
+      <div class="meal-box">
+        <div class="meal-title">중식</div>
+        <div class="food" id="lunch">정보 없음</div>
+      </div>
+      <div class="meal-box">
+        <div class="meal-title">석식</div>
+        <div class="food" id="dinner">정보 없음</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>데이터 출처: NEIS 교육행정정보시스템</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
